@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Showroom de Carros</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f3f4f6;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    header {
+      background-color: #111827;
+      padding: 20px;
+      text-align: center;
+      color: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 26px;
+    }
+
+    form {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 30px auto;
+      max-width: 600px;
+    }
+
+    select, input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      flex: 1;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #1e40af;
+    }
+
+    .car-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding: 0 20px 40px;
+    }
+
+    .car-card {
+      background-color: white;
+      border-radius: 12px;
+      padding: 16px;
+      width: 260px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+
+    .car-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.15);
+    }
+
+    .car-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .car-card h3 {
+      margin: 0 0 8px 0;
+      font-size: 18px;
+      color: #111;
+    }
+
+    .car-card p {
+      margin: 4px 0;
+      color: #444;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Showroom de Carros</h1>
+  </header>
+
+  <form method="get" action="{% url 'cars' %}">
+    <select name="brand">
+      <option value="">Todas as marcas</option>
+      {% for brand in brands %}
+        <option value="{{ brand.name }}" {% if brand.name == selected_brand %}selected{% endif %}>
+          {{ brand.name }}
+        </option>
+      {% endfor %}
+    </select>
+    <input type="text" name="search" placeholder="Buscar modelo..." value="{{ request.GET.search }}">
+    <button type="submit">🔍 Buscar</button>
+  </form>
+
+  <div class="car-grid">
+    {% for car in cars %}
+      <div class="car-card">
+        <img src="{{ car.photo.url }}" alt="{{ car.model }}">
+        <h3>{{ car.model }} - {{ car.brand }}</h3>
+        <p>Fabricação: {{ car.factory_year }} | Modelo: {{ car.model_year }}</p>
+        <p>Valor: € {{ car.value }}</p>
+        <p>Placa: {{ car.plate }}</p>
+      </div>
+    {% empty %}
+      <p>Nenhum carro encontrado.</p>
+    {% endfor %}
+  </div>
+
+</body>
+</html>
