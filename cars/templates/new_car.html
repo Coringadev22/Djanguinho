@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Adicionar Novo Carro</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            font-family: 'Consolas', 'Courier New', monospace;
+            padding: 40px;
+            color: #e0e0e0;
+        }
+
+        .form-container {
+            max-width: 480px;
+            background-color: #2a2a2a;
+            padding: 30px 35px;
+            margin: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #00ffe1;
+            letter-spacing: 1px;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+            color: #ddd;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="file"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 4px;
+            border: 1px solid #555;
+            border-radius: 6px;
+            background-color: #1f1f1f;
+            color: #fff;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            background-color: #00ffe1;
+            color: #1a1a1a;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #00c9b8;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Adicionar Novo Carro</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ new_car_form.as_p }}
+            <button type="submit">Salvar</button>
+        </form>
+    </div>
+</body>
+</html>
+{% endblock %}
