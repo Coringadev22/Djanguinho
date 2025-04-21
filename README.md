@@ -19,14 +19,6 @@ Sistema web para exibição e busca de carros com painel visual e filtro intelig
 - Upload e visualização de imagens
 - Painel admin com autenticação para cadastrar carros
 
-## 📸 Prints
-
-### 🖼️ Tela principal:
-![screenshot](./media/cars_example.png)
-
-### 🛠️ Painel admin:
-![screenshot](./media/admin_example.png)
-
 ## ▶️ Como rodar o projeto
 
 ```bash
