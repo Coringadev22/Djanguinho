@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container" style="text-align: center;">
+  <h2 style="color: #ff4d4d;">Tem certeza que deseja excluir este carro?</h2>
+
+  <p style="font-size: 18px; margin-top: 20px;">
+    <strong>{{ car.model }} - {{ car.brand }}</strong><br>
+    Placa: {{ car.plate }}<br>
+    Valor: € {{ car.value }}
+  </p>
+
+  {% if car.photo %}
+    <div style="margin-top: 20px;">
+      <img src="{{ car.photo.url }}" alt="{{ car.model }}" style="max-width: 300px; border-radius: 8px;">
+    </div>
+  {% endif %}
+
+  <form method="post" style="margin-top: 30px;">
+    {% csrf_token %}
+    <button type="submit" class="btn" style="background-color: #ff4d4d; color: white; margin-right: 10px;">
+      ❌ Confirmar Exclusão
+    </button>
+    <a href="{% url 'car_detail' car.pk %}" class="btn" style="background-color: #444; color: white;">
+      Cancelar
+    </a>
+  </form>
+</div>
+
+{% endblock %}
+

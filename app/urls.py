@@ -8,7 +8,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.http import HttpResponse
-from cars.views import NewCarView, CarsListView
+from cars.views import NewCarView, CarsListView, CarUpdateView, CarDeleteView
 from accounts.views import register_view
 from django.contrib.auth.views import LoginView, LogoutView
 from cars.views import HomeView
@@ -25,4 +25,6 @@ urlpatterns = [
     path('register/', register_view, name='register'),  # cadastro de usuário
     path('login/', CustomLoginView.as_view(), name='login'),  # login customizado
     path('logout/', LogoutView.as_view(next_page='login'), name='logout'),  # logout
+    path("car/<int:pk>/update/", CarUpdateView.as_view(), name="car_update"),
+    path("car/<int:pk>/update/", CarDeleteView.as_view(), name="car_delete"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

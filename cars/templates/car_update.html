@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 style="text-align: center; color: #00f2ff;">Editar Carro</h2>
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  
+  <div style="max-width: 600px; margin: 0 auto;">
+    <label for="id_model">Modelo:</label>
+    {{ form.model }}
+
+    <label for="id_brand">Marca:</label>
+    {{ form.brand }}
+
+    <label for="id_factory_year">Ano de Fabricação:</label>
+    {{ form.factory_year }}
+
+    <label for="id_model_year">Ano do Modelo:</label>
+    {{ form.model_year }}
+
+    <label for="id_plate">Placa:</label>
+    {{ form.plate }}
+
+    <label for="id_value">Valor (€):</label>
+    {{ form.value }}
+
+    <label for="id_photo">Foto:</label>
+    {{ form.photo }}
+
+    <button type="submit" class="btn" style="margin-top: 20px;">Salvar Alterações</button>
+    
+    <a href="{% url 'cars' %}" class="btn" style="margin-top: 10px; background-color: #444; color: white; display: inline-block; text-align: center;">
+      Cancelar
+    </a>
+  </div>
+</form>
+<a href="{% url 'car_update' car.pk %}" class="btn" style="background-color: #00f2ff; color: black;">✏️ Editar</a>
+<a href="{% url 'car_delete' car.pk %}" class="btn" style="background-color: #ff4d4d; color: white;">🗑️ Excluir</a>
+
+
+{% endblock %}

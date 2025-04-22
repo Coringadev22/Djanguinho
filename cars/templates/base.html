@@ -137,14 +137,29 @@
 
   <!-- Navbar -->
   <nav>
-    <div class="nav-left">
-      Olá, {{ user.username }}
-    </div>
-    <div class="nav-right">
-      <a href="{% url 'new_car' %}">Cadastrar Carro</a>
-      <a href="{% url 'cars' %}">Carros</a>
-      <a href="{% url 'logout' %}" class="logout">Sair</a>
-    </div>
+    <nav>
+      <div class="nav-left">
+        {% if user.is_authenticated %}
+          Olá, {{ user.username }}
+        {% else %}
+          Showroom 🚗
+        {% endif %}
+      </div>
+    
+      <div class="nav-right">
+        {% if user.is_authenticated %}
+          <a href="{% url 'new_car' %}">Cadastrar Carro</a>
+          <a href="{% url 'cars' %}">Carros</a>
+          <form id="logout-form" method="post" action="{% url 'logout' %}" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="logout" style="background: none; border: none; color: #ff4d4d; cursor: pointer;">Sair</button>
+          </form>
+        {% else %}
+          <a href="{% url 'login' %}">Entrar</a>
+        {% endif %}
+      </div>
+    </nav>
+       
   </nav>
 
   <!-- Conteúdo principal -->
