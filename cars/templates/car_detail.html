@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+  <h1>{{ car.model }} - {{ car.brand }}</h1>
+  <img src="{{ car.image.url }}" alt="{{ car.model }}" style="max-width: 400px; border-radius: 10px;">
+  <ul>
+    <li><strong>Fabricado:</strong> {{ car.year_fabrication }}</li>
+    <li><strong>Modelo:</strong> {{ car.year_model }}</li>
+    <li><strong>Valor:</strong> € {{ car.value }}</li>
+    <li><strong>Placa:</strong> {{ car.plate }}</li>
+  </ul>
+</div>
+{% endblock %}
