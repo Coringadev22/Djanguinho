@@ -12,6 +12,42 @@
       color: #fff;
     }
 
+    nav {
+      background-color: #081b29;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #ffffff;
+      box-shadow: 0 2px 6px rgba(0, 255, 255, 0.15);
+    }
+
+    .nav-left {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #00eaff;
+    }
+
+    .nav-right a {
+      margin-left: 30px;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+
+    .nav-right a:hover {
+      color: #00eaff;
+    }
+
+    .nav-right a.logout {
+      color: #ff4d4d;
+    }
+
+    .nav-right a.logout:hover {
+      color: #ff1a1a;
+    }
+
     .container {
       max-width: 1000px;
       margin: 40px auto;
@@ -95,18 +131,32 @@
       color: #888;
       font-size: 13px;
     }
-
   </style>
 </head>
 <body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="nav-left">
+      Olá, {{ user.username }}
+    </div>
+    <div class="nav-right">
+      <a href="{% url 'new_car' %}">Cadastrar Carro</a>
+      <a href="{% url 'cars' %}">Carros</a>
+      <a href="{% url 'logout' %}" class="logout">Sair</a>
+    </div>
+  </nav>
+
+  <!-- Conteúdo principal -->
   <div class="container">
     {% block content %}
-    <!-- Aqui vai o conteúdo de cada página -->
     {% endblock %}
   </div>
 
+  <!-- Rodapé -->
   <footer>
     Desenvolvido por Lucas Coelho • {{ now|default:"2025" }}
   </footer>
+
 </body>
 </html>
